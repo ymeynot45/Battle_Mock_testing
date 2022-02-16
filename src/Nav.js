@@ -1,7 +1,8 @@
+import React from 'react'
 import './Nav.css'
 
 const Nav = () => {
-  'Nav'
+  return <p>Nav</p>
 }
 
 export default Nav

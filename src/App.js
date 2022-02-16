@@ -1,25 +1,26 @@
 import './App.css'
 import React from 'react'
 import Nav from './Nav.js'
-import Shipbuilder from './Ship.js'
+import Ship from './Ship.js'
 
 const App = () => {
+  const sub = new Ship('sub', 6, 'playerone')
   return (
     <div className='App-wrapper'>
       <header className='App-header'>
         Battleship
       </header>
-      <Nav></Nav>
+      <Nav/>
       <main className='App-content'>
-        <Content/>
+        <div>{sub.type}</div>
       </main>
     </div>
   )
 }
 
-const Content = () => {
-  const temp = new Shipbuilder()
-  console.log(temp)
-}
+// const Content = () => {
+//   const temp = new Ship()
+//   return <p>{temp}</p>
+// }
 
 export default App
