@@ -1,26 +1,25 @@
-import logo from './logo.svg'
 import './App.css'
 import React from 'react'
+import Nav from './Nav.js'
+import Shipbuilder from './Ship.js'
 
-function App () {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App-wrapper'>
+      <header className='App-header'>
+        Battleship
       </header>
+      <Nav></Nav>
+      <main className='App-content'>
+        <Content/>
+      </main>
     </div>
   )
+}
+
+const Content = () => {
+  const temp = new Shipbuilder()
+  console.log(temp)
 }
 
 export default App
