@@ -13,10 +13,15 @@ const Ship = function (type, length, player, location, orientation) {
   this.orientation = orientation
   this.location = location
 
-  const isSunk = () => {
+  this.isSunk = () => {
     if (!this.body.includes('undamaged')) {
+      console.log('YOU SUNK MY BATTLESHIP')
       this.isFloating = false
     }
+  }
+
+  this.doesWork = function () {
+    console.log('Yes this works.')
   }
 
   const fillCompartments = (ship) => {

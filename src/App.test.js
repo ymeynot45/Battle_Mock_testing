@@ -22,4 +22,13 @@ test('A new ship is undamaged', () => {
   expect(boat.body).toEqual(['undamaged', 'undamaged', 'undamaged'])
 })
 
-// test('The ship will sink if it does not contain an undamaged compartment)
+test.only('The ship will sink if it does not contain an undamaged compartment', () => {
+  const dingy = new Ship(...shipStats)
+  dingy.body = []
+  dingy.isSunk()
+  expect(dingy.isFloating).toBe(false)
+})
+
+test('The ship establishes its location', () => {
+  const ssMinnow = new Ship(...shipStats)
+})
