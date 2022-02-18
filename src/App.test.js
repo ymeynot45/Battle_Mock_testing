@@ -56,3 +56,10 @@ test('If I fire at a ship it will return a damaged ship on a "HIT"', () => {
   expect(yamamoto.body[2]).toEqual('Damaged')
 })
 
+test('If I damage all of the compartments of a ship it will sink', () => {
+  const arizona = new Ship(...shipStatsB)
+  arizona.hitCheck('A1')
+  arizona.hitCheck('B1')
+  arizona.hitCheck('C1')
+  expect(arizona.isFloating).toBe(false)
+})

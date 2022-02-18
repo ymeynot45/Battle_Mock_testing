@@ -53,6 +53,7 @@ const Ship = function (type, length, player, location, orientation) {
     if (this.location.includes(targetLocation)) {
       damageShip(targetLocation)
       console.log('Hit')
+      this.isSunk()
       return 'HIT'
     } else {
       console.log('Miss')
