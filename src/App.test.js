@@ -49,3 +49,10 @@ test('If I fire at a ship it will return a "HIT"', () => {
   const yamamoto = new Ship(...shipStatsB)
   expect(yamamoto.hitCheck('C1')).toEqual('HIT')
 })
+
+test('If I fire at a ship it will return a damaged ship on a "HIT"', () => {
+  const yamamoto = new Ship(...shipStatsB)
+  yamamoto.hitCheck('C1')
+  expect(yamamoto.body[2]).toEqual('Damaged')
+})
+

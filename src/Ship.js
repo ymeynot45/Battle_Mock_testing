@@ -34,7 +34,6 @@ const Ship = function (type, length, player, location, orientation) {
       for (let i = 0; i < this.compartments; i++) {
         const newLet = col[(col.indexOf(startLet) + i)]
         this.location[i] = newLet + startNum
-        console.log('i ', i, ' - newLet - ', newLet)
       }
     } else if (this.orientation === 'col') {
       for (let i = 0; i < this.compartments; i++) {
@@ -43,8 +42,11 @@ const Ship = function (type, length, player, location, orientation) {
     } else { alert('error in ship orientation') }
   }
 
-  const damageShip = (location) => {
-
+  const damageShip = (targetLocation) => {
+    console.log('This.location - ', this.location, ' - this.location.indexOf(targetLocation - ', this.location.indexOf(targetLocation))
+    const hitCompartment = this.location.indexOf(targetLocation)
+    console.log('this.body[hitCompartment] - ', this.body[hitCompartment])
+    this.body[hitCompartment] = 'Damaged'
   }
 
   this.hitCheck = (targetLocation) => {
