@@ -20,14 +20,27 @@ const Ship = function (type, length, player, location, orientation) {
     }
   }
 
-  this.doesWork = function () {
+  this.doesWork = function () { // remove later
     console.log('Yes this works.')
   }
 
-  const fillCompartments = (ship) => {
-    ship.body[(ship.compartments - 1)] = ''
-    ship.body.fill('undamaged')
-    return ship
+  this.findLocation = function () {
+    const col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+    const startingPoint = this.location
+    const startNum = parseInt(startingPoint.substr(1, 1))
+    const startLet = startingPoint.substr(0, 1)
+    this.location = [startingPoint]
+    if (this.orientation === 'row') {
+      for (let i = 0; i < this.compartments; i++) {
+        const newLet = col[(col.indexOf(startLet) + i)]
+        this.location[i] = newLet + startNum
+        console.log('i ', i, ' - newLet - ', newLet)
+      }
+    } else if (this.orientation === 'col') {
+      for (let i = 0; i < this.compartments; i++) {
+        this.location[i] = startLet + (startNum + i)
+      }
+    } else { alert('error in ship orientation') }
   }
 
   const damageShip = (ship, location) => {
@@ -39,6 +52,13 @@ const Ship = function (type, length, player, location, orientation) {
       damageShip(ship, location)
     } else return 'Miss'
   }
+
+  const fillCompartments = (ship) => {
+    ship.body[(ship.compartments - 1)] = ''
+    ship.body.fill('undamaged')
+    return ship
+  }
+
   console.log(this)
   fillCompartments(this)
   return this

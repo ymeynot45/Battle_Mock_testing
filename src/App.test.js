@@ -4,7 +4,8 @@ import { render, screen } from '@testing-library/react'
 import App from './App.js'
 import Ship from './Ship.js'
 
-const shipStats = ['sub', 3, 'playerOne', 'A1', 'row']
+const shipStats = ['sub', 3, 'playerOne', 'A1', 'col']
+const shipStatsB = ['sub', 3, 'playerOne', 'A1', 'row']
 
 test('renders learn react link', () => {
   render(<App />)
@@ -22,13 +23,21 @@ test('A new ship is undamaged', () => {
   expect(boat.body).toEqual(['undamaged', 'undamaged', 'undamaged'])
 })
 
-test.only('The ship will sink if it does not contain an undamaged compartment', () => {
-  const dingy = new Ship(...shipStats)
-  dingy.body = []
-  dingy.isSunk()
-  expect(dingy.isFloating).toBe(false)
+test('The ship will sink if it does not contain an undamaged compartment', () => {
+  const dinghy = new Ship(...shipStats)
+  dinghy.body = []
+  dinghy.isSunk()
+  expect(dinghy.isFloating).toBe(false)
 })
 
-test('The ship establishes its location', () => {
+test('The ship establishes its location if a col', () => {
   const ssMinnow = new Ship(...shipStats)
+  ssMinnow.findLocation()
+  expect(ssMinnow.location).toEqual(['A1', 'A2', 'A3'])
+})
+
+test('The ship establishes its location if a row', () => {
+  const ssMinnow = new Ship(...shipStatsB)
+  ssMinnow.findLocation()
+  expect(ssMinnow.location).toEqual(['A1', 'B1', 'C1'])
 })
