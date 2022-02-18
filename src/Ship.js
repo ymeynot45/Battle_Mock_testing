@@ -7,13 +7,13 @@ const MISS = 'miss'
 const ROW = 'row'
 const COL = 'col'
 
-const Ship = function (type, length, player, location, orientation) {
-  this.type = type
+const Ship = function (shipType, shipLength, player, shipLocation, shipOrientation) {
+  this.type = shipType
   this.player = player
-  this.compartments = length
+  this.compartments = shipLength
   this.body = []
-  this.orientation = orientation
-  this.location = location
+  this.orientation = shipOrientation
+  this.location = shipLocation
 
   this.isSunk = () => {
     return !this.body.includes(UNDAMAGED)

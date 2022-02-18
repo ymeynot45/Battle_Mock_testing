@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-undef */
 import { render, screen } from '@testing-library/react'
 import App from './App.js'
 import Ship, { HIT, DAMAGED, MISS, UNDAMAGED } from './Ship.js'
+import Board, { HEIGHT, WIDTH } from './Board.js'
 
 const shipStats = ['sub', 3, 'playerOne', 'A1', 'col']
 const shipStatsB = ['sub', 3, 'playerOne', 'A1', 'row']
@@ -55,4 +57,17 @@ test('If I damage all of the compartments of a ship it will sink', () => {
   arizona.hitCheck('B1')
   arizona.hitCheck('C1')
   expect(arizona.isSunk()).toBe(true)
+})
+
+test('Can I build a board object', () => {
+  const testBoard = new Board(HEIGHT, WIDTH)
+  expect(testBoard.boardLength).toEqual(10)
+  expect(testBoard.boardWidth).toEqual(10)
+})
+
+test.only('The board is correctly labled', () => {
+  const testBoard = new Board(HEIGHT, WIDTH)
+  render(<App/>)
+  const linkElement = screen.getAllByText(/H5/)
+  expect(linkElement[0]).toBeInTheDocument()
 })
