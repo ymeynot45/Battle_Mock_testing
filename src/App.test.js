@@ -32,12 +32,20 @@ test('The ship will sink if it does not contain an undamaged compartment', () =>
 
 test('The ship establishes its location if a col', () => {
   const ssMinnow = new Ship(...shipStats)
-  ssMinnow.findLocation()
   expect(ssMinnow.location).toEqual(['A1', 'A2', 'A3'])
 })
 
 test('The ship establishes its location if a row', () => {
   const ssMinnow = new Ship(...shipStatsB)
-  ssMinnow.findLocation()
   expect(ssMinnow.location).toEqual(['A1', 'B1', 'C1'])
+})
+
+test('If I fire at a ship it will return a "Miss"', () => {
+  const yamamoto = new Ship(...shipStats)
+  expect(yamamoto.hitCheck('C3')).toEqual('Miss')
+})
+
+test('If I fire at a ship it will return a "HIT"', () => {
+  const yamamoto = new Ship(...shipStatsB)
+  expect(yamamoto.hitCheck('C1')).toEqual('HIT')
 })

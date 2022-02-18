@@ -43,14 +43,19 @@ const Ship = function (type, length, player, location, orientation) {
     } else { alert('error in ship orientation') }
   }
 
-  const damageShip = (ship, location) => {
+  const damageShip = (location) => {
 
   }
 
-  const hitCheck = (ship, location) => {
-    if (ship.location.includes(location)) {
-      damageShip(ship, location)
-    } else return 'Miss'
+  this.hitCheck = (targetLocation) => {
+    if (this.location.includes(targetLocation)) {
+      damageShip(targetLocation)
+      console.log('Hit')
+      return 'HIT'
+    } else {
+      console.log('Miss')
+      return 'Miss'
+    }
   }
 
   const fillCompartments = (ship) => {
@@ -61,6 +66,7 @@ const Ship = function (type, length, player, location, orientation) {
 
   console.log(this)
   fillCompartments(this)
+  this.findLocation(this)
   return this
 }
 export default Ship
