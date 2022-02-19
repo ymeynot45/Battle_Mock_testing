@@ -1,3 +1,4 @@
+import React from 'react'
 import './Board.css'
 const HEIGHT = 10
 const WIDTH = 10
@@ -7,22 +8,20 @@ const Board = function (boardHeight, boardWidth) {
   this.boardHeight = boardHeight
   this.boardWidth = boardWidth
 
-  const createBoard = (height, width) => {
-    for (let i = 0; i < (boardHeight); i++){
-        let 
-          for (let i = 0; i < boardWidth; i++){
-            <li id={}
+  this.createBoard = (height, width) => {
+    return (
+      <div>
+        {for (let n = 0; n < (boardHeight); n++) 
+        {const currentRow = boardHeight[n]
+          for (let l = 0; l < boardWidth; l++) {
+            <li id={columHeaders[l] + currentRow} className={['row' + currentRow, 'boardCell']} > {columHeaders[l] + currentRow}</li>
           }
-    }
-  
-  return (
-    <div id='boardwrapper'>
-      <ul id='squarewrapper'>
-        {createBoard(boardHeight, boardWidth)}
-      </ul>
-    </div>
-  )
-
+          }
+        }
+      </div>
+    )
+  }
+  console.log('I RAN TODAY')
 }
 
 export default Board

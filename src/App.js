@@ -3,8 +3,11 @@ import './App.css'
 import React from 'react'
 import Nav from './Nav.js'
 import Ship from './Ship.js'
+import Board, { HEIGHT, WIDTH } from './Board.js'
 
 const App = () => {
+  const newBoard = new Board(HEIGHT, WIDTH)
+  console.log(newBoard)
   // const battleShip = new Ship('Battleship', 5, 'playerone')
   // const airCraftCarrier = new Ship('AirCraftCarrier', 5, 'playerone')
   return (
@@ -14,8 +17,11 @@ const App = () => {
       </header>
       <Nav/>
       <main className='App-content'>
-        {/* <div>{battleShip.type}</div> */}
-        {/* <div>{airCraftCarrier.type}</div> */}
+        <div id='boardwrapper'>
+          <ul id='squarewrapper'>
+            {newBoard.createBoard(newBoard.boardHeight, newBoard.boardWidth)}
+          </ul>
+        </div>
       </main>
     </div>
   )
