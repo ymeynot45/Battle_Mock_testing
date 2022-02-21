@@ -18,9 +18,7 @@ const App = () => {
       <Nav/>
       <main className='App-content'>
         <div id='boardwrapper'>
-          <ul id='squarewrapper'>
-            {newBoard.createBoard(newBoard.boardHeight, newBoard.boardWidth)}
-          </ul>
+            {newBoard.renderBoard()}
         </div>
       </main>
     </div>
