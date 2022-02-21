@@ -14,8 +14,7 @@ const Board = function (boardHeight, boardWidth) {
       console.log(currentRow)
       for (let l = 0; l < width; l++) {
         const keyId = columHeaders[l] + currentRow
-        boardStructure.push(<li key={keyId} id={keyId} className={['row' + currentRow, 'boardCell']} > {columHeaders[l] + currentRow}</li>)
-        // console.log(boardStructure)
+        boardStructure.push(<li key={keyId} id={keyId} className={'row' + currentRow + ' ' + 'boardCell'} > {columHeaders[l] + currentRow}</li>)
       }
     }
   }
@@ -24,22 +23,7 @@ const Board = function (boardHeight, boardWidth) {
     return <ul id='squareWrapper'>
       {boardStructure}
     </ul>
-    // boardStructure.forEach(e => e.render())
   }
-
-  // this.createBoard = function (height, width) {
-  //   return (
-  //     <div>
-  //       {for (let n = 0; n < height; n++)
-  //         {const currentRow = height[n]
-  //           for (let l = 0; l < width; l++) {
-  //             <li id={columHeaders[l] + currentRow} className={['row' + currentRow, 'boardCell']} > {columHeaders[l] + currentRow}</li>
-  //           }
-  //         }
-  //       }
-  //     </div>
-  //   )
-  // }
 
   buildBoard(boardHeight, boardWidth)
   console.log(boardStructure)

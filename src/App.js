@@ -17,7 +17,7 @@ const App = () => {
       </header>
       <Nav/>
       <main className='App-content'>
-        <div id='boardwrapper'>
+        <div id='boardWrapper'>
             {newBoard.renderBoard()}
         </div>
       </main>

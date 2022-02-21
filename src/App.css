@@ -14,14 +14,8 @@
   color: white;
 }
 
-#boardwrapper{
+#boardwrapper {
   background-color: blueviolet;
   min-height: 500px;
   min-width: 500px;
-}
-
-#squarewrapper{
-  background-color: blue;
-  min-height: 400px;
-  min-width: 400px;
 }
