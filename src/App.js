@@ -4,11 +4,13 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Nav from './Nav.js'
 import Ship from './Ship.js'
-import Board, { HEIGHT, WIDTH } from './Board.js'
+import Board, { HEIGHT, WIDTH, PLAYERONE, PLAYERTWO } from './Board.js'
+import Holding from './Holding.js'
 
 const App = () => {
   const newBoard = new Board(HEIGHT, WIDTH)
-  const [activeTab, setActiveTab] = useState('playerOne')
+  const [activeTab, setActiveTab] = useState(PLAYERONE)
+  const nextPlayer = PLAYERTWO
 
   return (
     <div className='App-wrapper'>
@@ -20,23 +22,27 @@ const App = () => {
         onTabChange={setActiveTab}
       />
       <main className='App-content'>
-        <Content tab={activeTab}/>
-        {/* <div id='boardWrapper'>
-            {newBoard.renderBoard()}
-        </div> */}
+        <Content tab={activeTab} nextPlayer={nextPlayer}/>
+        {console.log(activeTab)}
       </main>
     </div>
   )
 }
 
-const Content = ({ tab }) => {
+const Content = ({ tab, nextPlayer }) => {
+  // { <div id='boardWrapper'>
+  //   {newBoard.renderBoard()}
+  // </div> }
+  const playerOneBoard = new Board(HEIGHT, WIDTH, PLAYERONE)
+  const playerTwoBoard = new Board(HEIGHT, WIDTH, PLAYERTWO)
+
   switch (tab) {
     case 'playerOne':
       return ''
     case 'playerTwo':
       return ''
     case 'holding':
-      return ''
+      return <Holding nextPlayer={nextPlayer}/>
     case 'winner':
       return ''
     default:
@@ -44,7 +50,8 @@ const Content = ({ tab }) => {
 }
 
 Content.propTypes = {
-  tab: PropTypes.string.isRequired
+  tab: PropTypes.string.isRequired,
+  nextPlayer: PropTypes.string.isRequired
 }
 
 export default App
