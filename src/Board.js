@@ -14,7 +14,7 @@ const Board = function (boardHeight, boardWidth) {
       console.log(currentRow)
       for (let l = 0; l < width; l++) {
         const keyId = columHeaders[l] + currentRow
-        boardStructure.push(<li key={keyId} id={keyId} className={'row' + currentRow + ' ' + 'boardCell'} > {columHeaders[l] + currentRow}</li>)
+        boardStructure.push(<li key={keyId} id={keyId} className={'row' + currentRow + ' ' + 'boardCell'} > <button className='cellButton' onClick={() => dispatch({ type: keyId })} variant="text"> {columHeaders[l] + currentRow}</button></li>)
       }
     }
   }

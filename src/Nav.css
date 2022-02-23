@@ -1,0 +1,42 @@
+.app{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.App-nav{
+  margin: 20px;
+  padding: 18px;
+  border-bottom: 2px solid blue;
+}
+
+.App-nav ul{
+  padding: 0;
+  margin: 0;
+}
+
+.App-nav button{
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.App-nav-tab{
+  list-style: none;
+  display: inline-block;
+  margin-right: 32px;
+  font-size: 24px;
+  border-bottom: 4px solid transparent;
+}
+
+.App-nav-tab button:hover{
+  color: gray;
+}
+
+.App-nav-tab.selected {
+  border-bottom-color: orange;
+}
+
+.App-content{
+  margin: 0 20px;
+}

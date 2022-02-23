@@ -1,11 +1,3 @@
-.boardCell{
-  display: flex;
-  border: 1px solid black;
-  margin: 0%;
-  align-items:center;
-  justify-content:center;
-}
-
 #squareWrapper {
   display: flex;
   background-color: blue;
@@ -21,3 +13,25 @@
   justify-self: center;
   border: 10px solid black;
 }
+
+.boardCell{
+  display: flex;
+  border: 1px solid black;
+  margin: 0%;
+  align-items:center;
+  justify-content:center;
+  padding: 0%;
+}
+
+.cellButton{
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.cellButton[disabled] {
+  background-color: Red;
+} 

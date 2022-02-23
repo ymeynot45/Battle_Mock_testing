@@ -1,33 +1,50 @@
 /* eslint-disable no-unused-vars */
 import './App.css'
-import React from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Nav from './Nav.js'
 import Ship from './Ship.js'
 import Board, { HEIGHT, WIDTH } from './Board.js'
 
 const App = () => {
   const newBoard = new Board(HEIGHT, WIDTH)
-  console.log(newBoard)
-  // const battleShip = new Ship('Battleship', 5, 'playerone')
-  // const airCraftCarrier = new Ship('AirCraftCarrier', 5, 'playerone')
+  const [activeTab, setActiveTab] = useState('playerOne')
+
   return (
     <div className='App-wrapper'>
       <header className='App-header'>
         Battleship
       </header>
-      <Nav/>
+      <Nav
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
       <main className='App-content'>
-        <div id='boardWrapper'>
+        <Content tab={activeTab}/>
+        {/* <div id='boardWrapper'>
             {newBoard.renderBoard()}
-        </div>
+        </div> */}
       </main>
     </div>
   )
 }
 
-// const Content = () => {
-//   const temp = new Ship()
-//   return <p>{temp}</p>
-// }
+const Content = ({ tab }) => {
+  switch (tab) {
+    case 'playerOne':
+      return ''
+    case 'playerTwo':
+      return ''
+    case 'holding':
+      return ''
+    case 'winner':
+      return ''
+    default:
+  }
+}
+
+Content.propTypes = {
+  tab: PropTypes.string.isRequired
+}
 
 export default App
