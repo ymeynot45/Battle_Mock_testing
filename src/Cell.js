@@ -1,19 +1,22 @@
 import './Cell.css'
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from './Button.js'
 
 const Cell = function (cellId) {
   this.cellId = cellId
   this.cellRow = cellId.slice(1)
   this.cellCol = cellId.slice(0, 1)
-  const clickEffect = function (e) {
-    // const [, dispatch] = useReducer(reducer)
-    // dispatch({ type: this.cellId }
-    e.currentTarget.setAttribute('disabled', true)
-  }
+  this.className = ('row' + this.cellRow + ' ' + 'boardCell')
+  this.cellButton = (new Button(this.cellId, ('row' + this.cellRow)))
+  // const clickEffect = function (e) {
+  //   const [, dispatch] = useReducer(reducer)
+  //   dispatch({ type: this.cellId }
+  //   e.currentTarget.setAttribute('disabled', true)
+  // }
 
   return (
-  <li key={cellId} id={cellId} className={'row' + this.cellRow + ' ' + 'boardCell'} > <button className='cellButton' variant="text" onClick={(e) => clickEffect(e)}> {this.cellCol + this.cellRow}</button></li>
+  <li key={cellId} id={cellId} className={this.className}>{this.cellButton}</li>
   ) //
 }
 
