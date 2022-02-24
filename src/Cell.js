@@ -7,7 +7,7 @@ const Cell = function (cellId) {
   this.cellRow = cellId.slice(1)
   this.cellCol = cellId.slice(0, 1)
   return (
-  <li key={cellId} id={cellId} className={'row' + this.cellRow + ' ' + 'boardCell'} > <button className='cellButton' variant="text"> {this.cellCol + this.cellRow}</button></li>
+  <li key={cellId} id={cellId} className={'row' + this.cellRow + ' ' + 'boardCell'} > <button className='cellButton' variant="text" onClick={(e) => e.currentTarget.setAttribute('disabled', true)}> {this.cellCol + this.cellRow}</button></li>
   ) // onClick={() => dispatch({ type: keyId })}
 }
 
