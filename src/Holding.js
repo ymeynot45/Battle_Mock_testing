@@ -2,8 +2,8 @@ import './Holding.css'
 import React, { useReducer } from 'react'
 import PropTypes from 'prop-types'
 
-function Holding ({ nextPlayer }) {
-  const [, dispatch] = useReducer()
+function Holding ({ nextPlayer, reducer }) {
+  const [, dispatch] = useReducer(reducer, nextPlayer)
 
   return (
     <div className='holdingScreen'>
@@ -13,7 +13,8 @@ function Holding ({ nextPlayer }) {
 }
 
 Holding.propTypes = {
-  nextPlayer: PropTypes.string.isRequired
+  nextPlayer: PropTypes.string.isRequired,
+  reducer: PropTypes.func.isRequired
 }
 
 export default Holding

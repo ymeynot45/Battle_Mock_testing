@@ -30,22 +30,41 @@ const App = () => {
 }
 
 const Content = ({ tab, nextPlayer }) => {
-  // { <div id='boardWrapper'>
-  //   {newBoard.renderBoard()}
-  // </div> }
   const playerOneBoard = new Board(HEIGHT, WIDTH, PLAYERONE)
   const playerTwoBoard = new Board(HEIGHT, WIDTH, PLAYERTWO)
 
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case PLAYERONE:
+        nextPlayer = PLAYERTWO
+        // activeTab = PLAYERONE 'not in scope'
+        return state
+      case PLAYERTWO:
+        nextPlayer = PLAYERONE
+        // activeTab = PLAYERTWO
+        return state
+    }
+  }
+
   switch (tab) {
     case 'playerOne':
-      return ''
+      return (
+        <div id='boardWrapper'>
+          {playerOneBoard.renderBoard()}
+        </div>
+      )
     case 'playerTwo':
-      return ''
+      return (
+        <div id='boardWrapper'>
+          {playerTwoBoard.renderBoard()}
+        </div>
+      )
     case 'holding':
-      return <Holding nextPlayer={nextPlayer}/>
+      return <Holding nextPlayer={nextPlayer} reducer={reducer}/>
     case 'winner':
-      return ''
+      return <div>Winner</div>
     default:
+      throw new Error()
   }
 }
 

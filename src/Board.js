@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { } from 'react'
 import './Board.css'
+import Cell from './Cell.js'
 const HEIGHT = 10
 const WIDTH = 10
 const PLAYERONE = 'playerOne'
@@ -16,15 +17,19 @@ const Board = function (boardHeight, boardWidth, player) {
       const currentRow = (n)
       for (let l = 0; l < width; l++) {
         const keyId = columHeaders[l] + currentRow
-        boardStructure.push(<li key={keyId} id={keyId} className={'row' + currentRow + ' ' + 'boardCell'} > <button className='cellButton' variant="text"> {columHeaders[l] + currentRow}</button></li>) // onClick={() => dispatch({ type: keyId })}
+        boardStructure.push(new Cell(keyId))
       }
     }
   }
 
   this.renderBoard = function () {
-    return <ul id='squareWrapper'>
-      {boardStructure}
-    </ul>
+    return (
+      <div className='playerDisplay'> {this.player}
+        <ul id='squareWrapper'>
+          {boardStructure}
+        </ul>
+      </div>
+    )
   }
 
   buildBoard(boardHeight, boardWidth)
