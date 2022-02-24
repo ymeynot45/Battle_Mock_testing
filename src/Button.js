@@ -16,7 +16,7 @@ const Button = function (buttonId, className) {
         // setActivated(!activated)
         e.currentTarget.setAttribute('disabled', true)
         }>
-      this.buttonId
+      {this.buttonId}
     </button>
   )
 }
