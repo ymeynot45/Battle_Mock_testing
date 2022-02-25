@@ -9,5 +9,6 @@
 }
 
 .cellButton[disabled] {
-  background-color: Red;
+  background-color: blue;
+  opacity: 0%;
 } 
