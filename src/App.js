@@ -8,7 +8,6 @@ import Board, { HEIGHT, WIDTH, PLAYERONE, PLAYERTWO } from './Board.js'
 import Holding from './Holding.js'
 
 const App = () => {
-  const newBoard = new Board(HEIGHT, WIDTH)
   const [activeTab, setActiveTab] = useState(PLAYERONE)
   const nextPlayer = PLAYERTWO
 
@@ -18,9 +17,10 @@ const App = () => {
         Battleship
       </header>
       <Nav
+        className='Nav-content'
         activeTab={activeTab}
         onTabChange={setActiveTab}
-      />
+/>
       <main className='App-content'>
         <Content tab={activeTab} nextPlayer={nextPlayer}/>
         {console.log(activeTab)}
@@ -30,8 +30,11 @@ const App = () => {
 }
 
 const Content = ({ tab, nextPlayer }) => {
-  const playerOneBoard = new Board(HEIGHT, WIDTH, PLAYERONE)
-  const playerTwoBoard = new Board(HEIGHT, WIDTH, PLAYERTWO)
+  console.log(PLAYERONE)
+  let playerOneBoard = new Board(HEIGHT, WIDTH, PLAYERONE)
+  let playerTwoBoard = new Board(HEIGHT, WIDTH, PLAYERTWO)
+  playerOneBoard = playerOneBoard.renderBoard()
+  playerTwoBoard = playerTwoBoard.renderBoard()
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -47,16 +50,16 @@ const Content = ({ tab, nextPlayer }) => {
   }
 
   switch (tab) {
-    case 'playerOne':
+    case PLAYERONE:
       return (
         <div id='boardWrapper'>
-          {playerOneBoard.renderBoard()}
+          {playerOneBoard}
         </div>
       )
-    case 'playerTwo':
+    case PLAYERTWO:
       return (
         <div id='boardWrapper'>
-          {playerTwoBoard.renderBoard()}
+          {playerTwoBoard}
         </div>
       )
     case 'holding':

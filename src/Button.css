@@ -1,6 +1,6 @@
 
 .cellButton{
-  background: none;
+  background: blue;
   border: none;
   padding: 0;
   margin: 0;
@@ -8,7 +8,24 @@
   width: 100%;
 }
 
+.cellButton:hover{
+  color: red;
+}
+
 .cellButton[disabled] {
-  background-color: blue;
-  opacity: 0%;
-} 
+  background-color: transparent;
+  color: transparent;
+  /* opacity: 0%; */
+}
+
+#holdingButton{
+  width: 10%;
+  border: 2px, solid, black;
+  background-color: lightgrey;
+}
+
+#endTurnButton{
+  border: 2px, solid, black;
+  /* need to align with the waiting tab above it, currently looks askew */
+  color: green
+}

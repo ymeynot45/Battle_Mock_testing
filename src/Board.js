@@ -12,12 +12,12 @@ const Board = function (boardHeight, boardWidth, player) {
   this.boardWidth = boardWidth
   this.player = player
   const boardStructure = []
-  const buildBoard = function (height, width) {
+  const buildBoard = function (height, width, player) {
     for (let n = 1; n <= height; n++) {
       const currentRow = (n)
       for (let l = 0; l < width; l++) {
         const keyId = columHeaders[l] + currentRow
-        boardStructure.push(new Cell(keyId))
+        boardStructure.push(new Cell(keyId, player))
       }
     }
   }
@@ -32,7 +32,7 @@ const Board = function (boardHeight, boardWidth, player) {
     )
   }
 
-  buildBoard(boardHeight, boardWidth)
+  buildBoard(this.boardHeight, this.boardWidth, this.player)
 }
 
 export default Board

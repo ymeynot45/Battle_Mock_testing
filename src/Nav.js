@@ -1,12 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Nav.css'
+import Button from './Button.js'
 
 const Nav = ({ activeTab, onTabChange }) => {
   const activePlayer = tabName =>
   `App-nav-tab ${
     activeTab === tabName ? 'selected' : ''
   }`
+  const switchTabEffectHolding = () => {
+    onTabChange('holding')
+    console.log(activeTab)
+  }
+  const endTurnButton = new Button('endTurnButton', 'navButton', switchTabEffectHolding, 'End Turn')
 
   return ( // Later remove the buttons so only the app changes the tabs
     <nav className="App-nav">
@@ -27,6 +34,7 @@ const Nav = ({ activeTab, onTabChange }) => {
           </button>
         </li>
       </ul>
+      <div>{endTurnButton}</div>
     </nav>
   )
 }
