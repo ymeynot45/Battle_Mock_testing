@@ -2,18 +2,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Nav.css'
-import Button from './Button.js'
+import { PLAYERONE, PLAYERTWO } from './Board'
+// const nextPlayer = PLAYERTWO
 
-const Nav = ({ activeTab, onTabChange }) => {
+const Nav = ({ activeTab, onTabChange }) => { // nextPlayerImport <-- for the third var
+  // const nextPlayer = nextPlayerImport
   const activePlayer = tabName =>
   `App-nav-tab ${
     activeTab === tabName ? 'selected' : ''
   }`
-  const switchTabEffectHolding = () => {
-    onTabChange('holding')
-    console.log(activeTab)
+  const changePlayer = (nextPlayer) => {
+    nextPlayer = (nextPlayer === PLAYERTWO) ? PLAYERONE : PLAYERTWO
   }
-  const endTurnButton = new Button('endTurnButton', 'navButton', switchTabEffectHolding, 'End Turn')
 
   return ( // Later remove the buttons so only the app changes the tabs
     <nav className="App-nav">
@@ -34,13 +34,14 @@ const Nav = ({ activeTab, onTabChange }) => {
           </button>
         </li>
       </ul>
-      <div>{endTurnButton}</div>
     </nav>
   )
 }
 Nav.propTypes = {
   activeTab: PropTypes.string.isRequired,
   onTabChange: PropTypes.func.isRequired
+  // nextPlayerImport: PropTypes.string.isRequired
 }
 
 export default Nav
+// export { nextPlayer }

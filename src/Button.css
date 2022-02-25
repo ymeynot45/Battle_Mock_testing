@@ -27,5 +27,6 @@
 #endTurnButton{
   border: 2px, solid, black;
   /* need to align with the waiting tab above it, currently looks askew */
-  color: green
+  color: green;
+  margin-bottom: 50px;
 }

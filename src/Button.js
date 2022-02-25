@@ -5,19 +5,17 @@ import PropTypes from 'prop-types'
 
 const Button = function (buttonId, className, clickEffect, buttonText, passedVariable) {
   this.buttonId = buttonId
-  this.className = (className + ' ' + 'cellButton')
+  this.className = (className + ' ' + passedVariable)
   this.clickEffect = clickEffect
   this.buttonText = buttonText
   this.passedVariable = passedVariable
-  // const [activated, setActivated] = React.useState(false) // I'm not sure if this is required
   return (
     <button
       id={this.buttonId}
       className={this.className}
-      // aria-pressed={activated ? 'true' : 'false'}
-      onClick={(e) =>
+      onClick={(e) => {
         this.clickEffect(e)
-        // setActivated(!activated)
+      }
         }>
       {this.buttonText}
     </button>

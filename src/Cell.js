@@ -13,10 +13,10 @@ const Cell = function (cellId, player) {
   const clickEffect = function (e) {
     e.currentTarget.setAttribute('disabled', true)
   }
-  this.cellButton = (new Button(this.cellId, ('row' + this.cellRow), clickEffect, this.text, this.player))
+  this.cellButton = (new Button(this.cellId, ('row' + this.cellRow), clickEffect, this.text, 'cellButton'))
 
   return (
-  <li key={cellId} id={cellId} className={this.className}>{this.cellButton}</li>
+    <li key={cellId} id={cellId} className={this.className}>{this.cellButton}</li>
   ) //
 }
 
