@@ -7,11 +7,12 @@ import Button from './Button'
 function Holding ({ nextPlayer, reducer }) {
   const [, dispatch] = useReducer(reducer, nextPlayer)
   const buttonText = nextPlayer + '\'s turn!'
-  const clickEffect = ''// dispatch({ type: nextPlayer })
+  const clickEffect = () => dispatch({ type: nextPlayer })
   const waitButton = new Button('holdingButton', 'genButton', clickEffect, buttonText)
 
   return (
     <div className='holdingScreen'>
+      <div><span>Waiting area until the next player is ready.</span></div>
       {waitButton}
     </div>
   )
