@@ -10,7 +10,7 @@ import Button from './Button.js'
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(PLAYERONE)
-  const nextPlayer = PLAYERTWO
+  const [nextPlayer, setNextPlayer] = useState(PLAYERTWO)
   const [playerOneBoard, setplayerOneBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERONE))
   const [playerTwoBoard, setplayertwoBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERTWO))
   return (
@@ -22,10 +22,9 @@ const App = () => {
         className='Nav-content'
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        nextPlayer={nextPlayer}
 />
       <main className='App-content'>
-        <Content tab={activeTab} nextPlayer={nextPlayer}
+        <Content tab={activeTab} nextPlayer={nextPlayer} setActiveTab={setActiveTab} setNextPlayer={setNextPlayer}
           playerOneBoard={playerOneBoard} playerTwoBoard={playerTwoBoard}/>
         {console.log(activeTab)}
       </main>
@@ -33,27 +32,23 @@ const App = () => {
   )
 }
 
-const Content = ({ tab, nextPlayer, playerOneBoard, playerTwoBoard }) => {
-  const switchTabEffectHolding = (nextPlayer) => {
-    // onTabChange('holding')
-    // console.log(activeTab)
-    // changePlayer(nextPlayer)
+const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard, playerTwoBoard }) => {
+  const switchTabToHolding = () => {
+    setActiveTab('holding')
   }
-  const endTurnButton = new Button('endTurnButton', '', switchTabEffectHolding, 'End Turn') // nextPlayer
-  console.log(nextPlayer)
+  const endTurnButton = new Button('endTurnButton', '', switchTabToHolding, 'End Turn')
   playerOneBoard = playerOneBoard.renderBoard()
   playerTwoBoard = playerTwoBoard.renderBoard()
 
   const reducer = (state, action) => {
     switch (action.type) {
       case PLAYERONE:
-        nextPlayer = PLAYERTWO
-        // activeTab = PLAYERONE 'not in scope'
-        return state
+        setNextPlayer(PLAYERTWO)
+        setActiveTab(PLAYERONE)
+        return
       case PLAYERTWO:
-        nextPlayer = PLAYERONE
-        // activeTab = PLAYERTWO
-        return state
+        setNextPlayer(PLAYERONE)
+        setActiveTab(PLAYERTWO)
     }
   }
 
@@ -84,6 +79,8 @@ const Content = ({ tab, nextPlayer, playerOneBoard, playerTwoBoard }) => {
 Content.propTypes = {
   tab: PropTypes.string.isRequired,
   nextPlayer: PropTypes.string.isRequired,
+  setActiveTab: PropTypes.func.isRequired,
+  setNextPlayer: PropTypes.func.isRequired,
   playerOneBoard: PropTypes.object.isRequired,
   playerTwoBoard: PropTypes.object.isRequired
 }

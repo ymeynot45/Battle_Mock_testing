@@ -3,12 +3,11 @@ import React, { useState } from 'react'
 import './Button.css'
 import PropTypes from 'prop-types'
 
-const Button = function (buttonId, className, clickEffect, buttonText, passedVariable) {
+const Button = function (buttonId, className, clickEffect, buttonText, extraClass) {
   this.buttonId = buttonId
-  this.className = (className + ' ' + passedVariable)
+  this.className = (className + ' ' + extraClass)
   this.clickEffect = clickEffect
   this.buttonText = buttonText
-  this.passedVariable = passedVariable
   return (
     <button
       id={this.buttonId}
