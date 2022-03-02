@@ -5,15 +5,12 @@ import './Nav.css'
 import { PLAYERONE, PLAYERTWO } from './Board'
 // const nextPlayer = PLAYERTWO
 
-const Nav = ({ activeTab, onTabChange }) => { // nextPlayerImport <-- for the third var
+const Nav = ({ activeTab }) => { // nextPlayerImport <-- for the third var
   // const nextPlayer = nextPlayerImport
   const activePlayer = tabName =>
   `App-nav-tab ${
     activeTab === tabName ? 'selected' : ''
   }`
-  const changePlayer = (nextPlayer) => {
-    nextPlayer = (nextPlayer === PLAYERTWO) ? PLAYERONE : PLAYERTWO
-  }
 
   return ( // Later remove the buttons so only the app changes the tabs
     <nav className="App-nav">
