@@ -19,19 +19,13 @@ const Nav = ({ activeTab, onTabChange }) => { // nextPlayerImport <-- for the th
     <nav className="App-nav">
       <ul>
         <li className={activePlayer('playerOne')}>
-          <button onClick={() => onTabChange('playerOne')}>
-            1st Player
-          </button>
+          1st Player
         </li>
         <li className={activePlayer('holding')}>
-          <button onClick={() => onTabChange('holding')}>
-            Waiting
-          </button>
+          Waiting
         </li>
         <li className={activePlayer('playerTwo')}>
-          <button onClick={() => onTabChange('playerTwo')}>
-            2nd Player
-          </button>
+          2nd Player
         </li>
       </ul>
     </nav>
