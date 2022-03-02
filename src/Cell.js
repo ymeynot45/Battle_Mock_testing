@@ -10,8 +10,13 @@ const Cell = function (cellId, player) {
   this.cellRow = cellId.slice(1)
   this.cellCol = cellId.slice(0, 1)
   this.className = ('row' + this.cellRow + ' ' + 'boardCell')
-  const clickEffect = function (e) {
+  // const hitCheck = true
+
+  const clickEffect = (e) => {
     e.currentTarget.setAttribute('disabled', true)
+    console.log(e.target, this)
+    // hitCheck() ? 'turn red' : 'do nothing'
+    // endTurn()
   }
   this.cellButton = (new Button(this.cellId, ('row' + this.cellRow), clickEffect, this.text, 'cellButton'))
 
