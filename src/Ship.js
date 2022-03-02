@@ -55,7 +55,7 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
 
   const fillCompartments = (ship) => {
     ship.body[(ship.numberOfCompartments - 1)] = '' // CREATES THE PROPER LENGTH ARRAY
-    ship.body.fill(UNDAMAGED) // FILLS THE ARRAY, fill won't expand an array.
+    ship.body.fill(UNDAMAGED) // FILLS THE ARRAY, fill() won't expand an array.
     return ship
   }
 

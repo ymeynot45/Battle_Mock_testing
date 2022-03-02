@@ -5,9 +5,11 @@ import Ship from './Ship'
 const Fleet = function (player) {
   this.player = player
   this.ships = []
-  const shipsLocations = []
+  let shipsLocations = []
   this.addShip = (newship) => {
     this.ships.push(newship)
+    shipsLocations = []
+    this.ships.forEach(locateShips)
   }
   const locateShips = (ship, index, ships) => {
     let i = 0
@@ -16,12 +18,15 @@ const Fleet = function (player) {
       i++
     }
   }
-  this.fleetHitCheck = (target) => {
+  this.isFleetHit = (target) => {
     if (shipsLocations.includes(target)) {
+      console.log('FLEET WAS HIT ', true)
       return true
-    } else return false
+    } else {
+      console.log('FLEET WAS MISSED', false)
+      return false
+    }
   }
-  this.ships.forEach(locateShips)
 }
 
 Fleet.PropTypes = {
