@@ -10,7 +10,7 @@ const COL = 'col'
 const Ship = function (shipType, shipLength, player, shipLocation, shipOrientation) {
   this.type = shipType
   this.player = player
-  this.compartments = shipLength
+  this.numberOfCompartments = shipLength
   this.body = []
   this.orientation = shipOrientation
   this.location = shipLocation
@@ -26,12 +26,12 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
     const startLet = startingPoint.substr(0, 1)
     this.location = [startingPoint]
     if (this.orientation === ROW) {
-      for (let i = 0; i < this.compartments; i++) {
+      for (let i = 0; i < this.numberOfCompartments; i++) {
         const newLet = col[(col.indexOf(startLet) + i)]
         this.location[i] = newLet + startNum
       }
     } else if (this.orientation === COL) {
-      for (let i = 0; i < this.compartments; i++) {
+      for (let i = 0; i < this.numberOfCompartments; i++) {
         this.location[i] = startLet + (startNum + i)
       }
     } else { alert('error in ship orientation') }
@@ -42,7 +42,7 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
     this.body[hitCompartment] = DAMAGED
   }
 
-  this.hitCheck = (targetLocation) => {
+  this.shipHitCheck = (targetLocation) => {
     if (this.location.includes(targetLocation)) {
       damageShip(targetLocation)
       console.log(HIT)
@@ -54,7 +54,7 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
   }
 
   const fillCompartments = (ship) => {
-    ship.body[(ship.compartments - 1)] = '' // CREATES THE PROPER LENGTH ARRAY
+    ship.body[(ship.numberOfCompartments - 1)] = '' // CREATES THE PROPER LENGTH ARRAY
     ship.body.fill(UNDAMAGED) // FILLS THE ARRAY, fill won't expand an array.
     return ship
   }

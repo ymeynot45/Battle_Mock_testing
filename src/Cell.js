@@ -3,19 +3,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button.js'
 
-const Cell = function (cellId, player) {
+const Cell = function (cellId, player, hitCheck) {
   this.player = player
   this.text = cellId
   this.cellId = (player + cellId)
   this.cellRow = cellId.slice(1)
   this.cellCol = cellId.slice(0, 1)
+  this.hitCheck = hitCheck
   this.className = ('row' + this.cellRow + ' ' + 'boardCell')
-  // const hitCheck = true
 
   const clickEffect = (e) => {
     e.currentTarget.setAttribute('disabled', true)
-    console.log(e.target, this)
-    // hitCheck() ? 'turn red' : 'do nothing'
+    // this.removeChild(this.firstChild)
     // endTurn()
   }
   this.cellButton = (new Button(this.cellId, ('row' + this.cellRow), clickEffect, this.text, 'cellButton'))
@@ -27,7 +26,8 @@ const Cell = function (cellId, player) {
 
 Cell.propTypes = {
   cellId: PropTypes.string.isRequired,
-  player: PropTypes.string.isRequired
+  player: PropTypes.string.isRequired,
+  hitCheck: PropTypes.func.isRequired
 }
 
 export default Cell

@@ -7,6 +7,7 @@ import Ship from './Ship.js'
 import Board, { HEIGHT, WIDTH, PLAYERONE, PLAYERTWO } from './Board.js'
 import Holding from './Holding.js'
 import Button from './Button.js'
+import Fleet from './Fleet.js'
 
 const App = () => {
   const [activeTab, setActiveTab] = useState(PLAYERONE)
@@ -33,6 +34,9 @@ const App = () => {
 }
 
 const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard, playerTwoBoard }) => {
+  const playerOneShips = new Fleet(PLAYERONE)
+  playerOneShips.addShip(new Ship('sub', 3, 'playerOne', 'G3', 'col'))
+  console.log(playerOneShips[0])
   const switchTabToHolding = () => {
     setActiveTab('holding')
   }
@@ -40,7 +44,7 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
   playerOneBoard = playerOneBoard.renderBoard()
   playerTwoBoard = playerTwoBoard.renderBoard()
 
-  const reducer = (state, action) => {
+  const reducerActivePlayer = (state, action) => {
     switch (action.type) {
       case PLAYERONE:
         setNextPlayer(PLAYERTWO)
@@ -50,6 +54,9 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
         setNextPlayer(PLAYERONE)
         setActiveTab(PLAYERTWO)
     }
+  }
+  const hitCheck = (location, player) => {
+
   }
 
   switch (tab) {
@@ -68,7 +75,7 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
         </div>
       )
     case 'holding':
-      return <Holding nextPlayer={nextPlayer} reducer={reducer}/>
+      return <Holding nextPlayer={nextPlayer} reducer={reducerActivePlayer}/>
     case 'winner':
       return <div>Winner</div>
     default:

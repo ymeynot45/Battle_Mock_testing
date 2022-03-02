@@ -4,7 +4,7 @@
 import { render, screen } from '@testing-library/react'
 import App from './App.js'
 import Ship, { HIT, DAMAGED, MISS, UNDAMAGED } from './Ship.js'
-import Board, { HEIGHT, WIDTH } from './Board.js'
+import Board, { HEIGHT, PLAYERONE, WIDTH } from './Board.js'
 
 const shipStats = ['sub', 3, 'playerOne', 'A1', 'col']
 const shipStatsB = ['sub', 3, 'playerOne', 'A1', 'row']
@@ -37,35 +37,35 @@ test('The ship establishes its location if a row', () => {
 
 test('If I fire at a ship it will return a "Miss"', () => {
   const yamamoto = new Ship(...shipStats)
-  expect(yamamoto.hitCheck('C3')).toEqual(MISS)
+  expect(yamamoto.shipHitCheck('C3')).toEqual(MISS)
 })
 
 test('If I fire at a ship it will return a "HIT"', () => {
   const yamamoto = new Ship(...shipStatsB)
-  expect(yamamoto.hitCheck('C1')).toEqual(HIT)
+  expect(yamamoto.shipHitCheck('C1')).toEqual(HIT)
 })
 
 test('If I fire at a ship it will return a damaged ship on a "HIT"', () => {
   const yamamoto = new Ship(...shipStatsB)
-  yamamoto.hitCheck('C1')
+  yamamoto.shipHitCheck('C1')
   expect(yamamoto.body[2]).toEqual(DAMAGED)
 })
 
 test('If I damage all of the compartments of a ship it will sink', () => {
   const arizona = new Ship(...shipStatsB)
-  arizona.hitCheck('A1')
-  arizona.hitCheck('B1')
-  arizona.hitCheck('C1')
+  arizona.shipHitCheck('A1')
+  arizona.shipHitCheck('B1')
+  arizona.shipHitCheck('C1')
   expect(arizona.isSunk()).toBe(true)
 })
 
 test('Can I build a board object', () => {
-  const testBoard = new Board(HEIGHT, WIDTH)
-  expect(testBoard.boardLength).toEqual(10)
+  const testBoard = new Board(HEIGHT, WIDTH, PLAYERONE)
+  expect(testBoard.boardHeight).toEqual(10)
   expect(testBoard.boardWidth).toEqual(10)
 })
 
-test.only('The board is correctly labled', () => {
+test('The board is correctly labled', () => {
   const testBoard = new Board(HEIGHT, WIDTH)
   render(<App/>)
   const linkElement = screen.getAllByText(/H5/)
