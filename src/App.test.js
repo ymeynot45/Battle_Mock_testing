@@ -46,6 +46,12 @@ test('If I fire at a ship it will return a "HIT"', () => {
   expect(yamamoto.shipHitCheck('C1')).toEqual(HIT)
 })
 
+test('If I fire at a ship it will return a undamaged ship on a "MiSS"', () => {
+  const yamamoto = new Ship(...shipStatsB)
+  yamamoto.shipHitCheck('F1')
+  expect(yamamoto.body[1]).toEqual(UNDAMAGED)
+})
+
 test('If I fire at a ship it will return a damaged ship on a "HIT"', () => {
   const yamamoto = new Ship(...shipStatsB)
   yamamoto.shipHitCheck('C1')
@@ -73,7 +79,7 @@ test('The board is correctly labled', () => {
   expect(linkElement[0]).toBeInTheDocument()
 })
 
-test('Will a fleet dectect a hit', () => {
+test('Will a fleet dectect a miss', () => {
   const redOctober = new Ship(...shipStats)
   const dallas = new Ship(...shipStatsB)
   const huntFor = new Fleet(PLAYERONE)
@@ -89,4 +95,23 @@ test('Will a fleet dectect a hit', () => {
   huntFor.addShip(redOctober)
   huntFor.addShip(dallas)
   expect(huntFor.isFleetHit('A1')).toBe(true)
+})
+
+test('Will a ship in a Fleet record damage when the fleet is hit', () => {
+  const redOctober = new Ship(...shipStats)
+  const dallas = new Ship(...shipStatsB)
+  const huntFor = new Fleet(PLAYERONE)
+  huntFor.addShip(redOctober)
+  huntFor.addShip(dallas)
+  huntFor.isFleetHit('A1')
+  expect(redOctober[0]).toEqual(DAMAGED)
+})
+
+test.skip('Will a sunk ship be removed from a fleet', () => {
+  const redOctober = new Ship(...shipStats)
+  const dallas = new Ship(...shipStatsB)
+  const huntFor = new Fleet(PLAYERONE)
+  huntFor.addShip(redOctober)
+  huntFor.addShip(dallas)
+
 })
