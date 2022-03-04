@@ -20,12 +20,18 @@ const Fleet = function (player) {
   }
   this.isFleetHit = (target) => {
     if (shipsLocations.includes(target)) {
-      console.log('FLEET WAS HIT ', true)
+      // console.log('FLEET WAS HIT ', true)
       return true
     } else {
-      console.log('FLEET WAS MISSED', false)
+      // console.log('FLEET WAS MISSED', false)
       return false
     }
+  }
+  this.removeSunkShip = () => {
+    console.log('preremoval - ', this.ships)
+    this.ships = this.ships.filter(ship => !ship.isSunk())
+    console.log('postremoval - ', this.ships)
+    return this.ships
   }
 }
 

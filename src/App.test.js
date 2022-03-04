@@ -8,7 +8,15 @@ import Board, { HEIGHT, PLAYERONE, WIDTH } from './Board.js'
 import Fleet from './Fleet.js'
 
 const shipStats = ['sub', 3, 'playerOne', 'A1', 'col']
-const shipStatsB = ['sub', 3, 'playerOne', 'B1', 'row']
+const shipStatsB = ['destroyer', 3, 'playerOne', 'B1', 'row']
+function gameHitCheck (location, fleet) {
+  if (fleet.isFleetHit(location)) {
+    fleet.ships.forEach(ship => ship.shipHitCheck(location))
+    fleet.removeSunkShip()
+  } else {
+    return 'MISS'
+  }
+}
 
 test('renders learn react link', () => {
   render(<App />)
@@ -103,15 +111,19 @@ test('Will a ship in a Fleet record damage when the fleet is hit', () => {
   const huntFor = new Fleet(PLAYERONE)
   huntFor.addShip(redOctober)
   huntFor.addShip(dallas)
-  huntFor.isFleetHit('A1')
-  expect(redOctober[0]).toEqual(DAMAGED)
+  gameHitCheck('A1', huntFor)
+  expect(redOctober.body[0]).toEqual(DAMAGED)
 })
 
-test.skip('Will a sunk ship be removed from a fleet', () => {
+test.only('Will a sunk ship be removed from a fleet', () => {
   const redOctober = new Ship(...shipStats)
   const dallas = new Ship(...shipStatsB)
   const huntFor = new Fleet(PLAYERONE)
   huntFor.addShip(redOctober)
   huntFor.addShip(dallas)
-
+  gameHitCheck('A1', huntFor)
+  gameHitCheck('A2', huntFor)
+  gameHitCheck('A3', huntFor)
+  console.log(huntFor.ships[0], ' - is the first ship')
+  expect(huntFor.ships[0].type).toEqual('destroyer')
 })

@@ -27,7 +27,7 @@ const App = () => {
       <main className='App-content'>
         <Content tab={activeTab} nextPlayer={nextPlayer} setActiveTab={setActiveTab} setNextPlayer={setNextPlayer}
           playerOneBoard={playerOneBoard} playerTwoBoard={playerTwoBoard}/>
-        {console.log(activeTab)}
+        {/* {console.log(activeTab)} */}
       </main>
     </div>
   )
@@ -35,8 +35,8 @@ const App = () => {
 
 const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard, playerTwoBoard }) => {
   const playerOneShips = new Fleet(PLAYERONE)
-  playerOneShips.addShip(new Ship('sub', 3, 'playerOne', 'G3', 'col'))
-  console.log(playerOneShips[0])
+  playerOneShips.addShip(new Ship('sub', 3, PLAYERONE, 'G3', 'col'))
+  playerOneShips.addShip(new Ship('tug', 2, PLAYERONE, 'A1', 'row'))
   const switchTabToHolding = () => {
     setActiveTab('holding')
   }
@@ -55,8 +55,22 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
         setActiveTab(PLAYERTWO)
     }
   }
-  const hitCheck = (location, player) => {
+  const gameHitCheck = (location, fleet) => {
+    if (fleet.isFleetHit(location)) {
+      fleet.ships.forEach(ship => ship.shipHitCheck(location))
+      fleet.removeSunkShip()
+      gameOverCheck(fleet)
+    } else {
+      return 'MISS'
+    }
+  }
 
+  const gameOverCheck = (fleet) => {
+    if (fleet.ships === []) {
+      alert(fleet.player, ' has lost the game!')
+    } else {
+      return ''
+    }
   }
 
   switch (tab) {
@@ -93,3 +107,4 @@ Content.propTypes = {
 }
 
 export default App
+// export { Content, gameHitCheck }

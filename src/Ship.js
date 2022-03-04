@@ -4,8 +4,8 @@ const UNDAMAGED = 'undamaged'
 const DAMAGED = 'damaged'
 const HIT = 'hit'
 const MISS = 'miss'
-const ROW = 'row'
-const COL = 'col'
+const ROWABC = 'row'
+const COL123 = 'col'
 
 const Ship = function (shipType, shipLength, player, shipLocation, shipOrientation) {
   this.type = shipType
@@ -25,12 +25,12 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
     const startNum = parseInt(startingPoint.substr(1, 1))
     const startLet = startingPoint.substr(0, 1)
     this.location = [startingPoint]
-    if (this.orientation === ROW) {
+    if (this.orientation === ROWABC) {
       for (let i = 0; i < this.numberOfCompartments; i++) {
         const newLet = col[(col.indexOf(startLet) + i)]
         this.location[i] = newLet + startNum
       }
-    } else if (this.orientation === COL) {
+    } else if (this.orientation === COL123) {
       for (let i = 0; i < this.numberOfCompartments; i++) {
         this.location[i] = startLet + (startNum + i)
       }
@@ -45,10 +45,11 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
   this.shipHitCheck = (targetLocation) => {
     if (this.location.includes(targetLocation)) {
       damageShip(targetLocation)
-      console.log(HIT)
+      // this.isSunk()
+      // console.log('hit ship - ', this)
       return HIT
     } else {
-      console.log(MISS)
+      // console.log('missed ship - ', this)
       return MISS
     }
   }
@@ -59,7 +60,7 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
     return ship
   }
 
-  console.log(this)
+  // console.log(this)
   fillCompartments(this)
   this.findLocation(this)
   return this
