@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Ship from './Ship'
 

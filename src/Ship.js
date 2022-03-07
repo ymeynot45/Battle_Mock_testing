@@ -45,7 +45,7 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
   this.shipHitCheck = (targetLocation) => {
     if (this.location.includes(targetLocation)) {
       damageShip(targetLocation)
-      // this.isSunk()
+      // this.isSunk() // may not be required anymore
       // console.log('hit ship - ', this)
       return HIT
     } else {
@@ -66,4 +66,4 @@ const Ship = function (shipType, shipLength, player, shipLocation, shipOrientati
   return this
 }
 export default Ship
-export { HIT, DAMAGED, MISS, UNDAMAGED }
+export { HIT, DAMAGED, MISS, UNDAMAGED, ROWABC, COL123 }

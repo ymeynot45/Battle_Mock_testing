@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import './App.css'
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Nav from './Nav.js' // , { nextPlayer }
-import Ship from './Ship.js'
+import Ship, { HIT, DAMAGED, MISS, UNDAMAGED, ROWABC, COL123 } from './Ship.js'
 import Board, { HEIGHT, WIDTH, PLAYERONE, PLAYERTWO } from './Board.js'
 import Holding from './Holding.js'
 import Button from './Button.js'
@@ -21,9 +22,7 @@ const App = () => {
       </header>
       <Nav
         className='Nav-content'
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-/>
+      />
       <main className='App-content'>
         <Content tab={activeTab} nextPlayer={nextPlayer} setActiveTab={setActiveTab} setNextPlayer={setNextPlayer}
           playerOneBoard={playerOneBoard} playerTwoBoard={playerTwoBoard}/>
@@ -35,12 +34,13 @@ const App = () => {
 
 const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard, playerTwoBoard }) => {
   const playerOneShips = new Fleet(PLAYERONE)
-  playerOneShips.addShip(new Ship('sub', 3, PLAYERONE, 'G3', 'col'))
-  playerOneShips.addShip(new Ship('tug', 2, PLAYERONE, 'A1', 'row'))
+  playerOneShips.addShip(new Ship('sub', 3, PLAYERONE, 'G3', COL123))
+  playerOneShips.addShip(new Ship('tug', 2, PLAYERONE, 'A1', ROWABC))
   const switchTabToHolding = () => {
     setActiveTab('holding')
   }
   const endTurnButton = new Button('endTurnButton', '', switchTabToHolding, 'End Turn')
+
   playerOneBoard = playerOneBoard.renderBoard()
   playerTwoBoard = playerTwoBoard.renderBoard()
 
@@ -55,6 +55,17 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
         setActiveTab(PLAYERTWO)
     }
   }
+
+  const reducerFireCheck = (button, action) => {
+    switch (action.type) {
+      case HIT:
+        console.log('')
+        return '' //
+      case MISS:
+        return '' //
+    }
+  }
+
   const gameHitCheck = (location, fleet) => {
     if (fleet.isFleetHit(location)) {
       fleet.ships.forEach(ship => ship.shipHitCheck(location))
@@ -107,4 +118,4 @@ Content.propTypes = {
 }
 
 export default App
-// export { Content, gameHitCheck }
+export { Content }
