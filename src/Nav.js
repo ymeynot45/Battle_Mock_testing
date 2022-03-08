@@ -3,25 +3,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Nav.css'
 import { PLAYERONE, PLAYERTWO } from './Board'
-// const nextPlayer = PLAYERTWO
 
-const Nav = ({ activeTab }) => { // nextPlayerImport <-- for the third var
-  // const nextPlayer = nextPlayerImport
+const Nav = ({ activeTab }) => {
   const activePlayer = tabName =>
   `App-nav-tab ${
     activeTab === tabName ? 'selected' : ''
   }`
 
-  return ( // Later remove the buttons so only the app changes the tabs
+  return (
     <nav className="App-nav">
       <ul>
-        <li className={activePlayer('playerOne')}>
+        <li className={activePlayer(PLAYERONE)}>
           1st Player
         </li>
         <li className={activePlayer('holding')}>
           Waiting
         </li>
-        <li className={activePlayer('playerTwo')}>
+        <li className={activePlayer(PLAYERTWO)}>
           2nd Player
         </li>
       </ul>
@@ -30,8 +28,6 @@ const Nav = ({ activeTab }) => { // nextPlayerImport <-- for the third var
 }
 Nav.propTypes = {
   activeTab: PropTypes.string
-  // nextPlayerImport: PropTypes.string.isRequired
 }
 
 export default Nav
-// export { nextPlayer }

@@ -13,8 +13,27 @@ import Fleet from './Fleet.js'
 const App = () => {
   const [activeTab, setActiveTab] = useState(PLAYERONE)
   const [nextPlayer, setNextPlayer] = useState(PLAYERTWO)
-  const [playerOneBoard, setplayerOneBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERONE))
-  const [playerTwoBoard, setplayertwoBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERTWO))
+  // const endTurn = () => {
+  //   const disableButtons = document.getElementsByClassName('cellButton')
+  // console.log('disable buttons - ', disableButtons)
+  // disableButtons.forEach.setAttribute('disabled', true)
+  // console.log('ENDTURN ... ENDTURN')
+  // }
+  // const gameLogic = {}
+  // gameLogic.endTurn = endTurn
+
+  const reducerFireCheck = (button, action) => {
+    switch (action.type) {
+      case HIT:
+        console.log('')
+        return '' //
+      case MISS:
+        return '' //
+    }
+  }
+
+  const [playerOneBoard, setplayerOneBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERONE, reducerFireCheck)) // , gameLogic
+  const [playerTwoBoard, setplayertwoBoard] = useState(new Board(HEIGHT, WIDTH, PLAYERTWO, reducerFireCheck)) // , gameLogic
   return (
     <div className='App-wrapper'>
       <header className='App-header'>
@@ -26,7 +45,6 @@ const App = () => {
       <main className='App-content'>
         <Content tab={activeTab} nextPlayer={nextPlayer} setActiveTab={setActiveTab} setNextPlayer={setNextPlayer}
           playerOneBoard={playerOneBoard} playerTwoBoard={playerTwoBoard}/>
-        {/* {console.log(activeTab)} */}
       </main>
     </div>
   )
@@ -41,8 +59,8 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
   }
   const endTurnButton = new Button('endTurnButton', '', switchTabToHolding, 'End Turn')
 
-  playerOneBoard = playerOneBoard.renderBoard()
-  playerTwoBoard = playerTwoBoard.renderBoard()
+  //playerOneBoard = playerOneBoard.renderBoard()
+  //playerTwoBoard = playerTwoBoard.renderBoard()
 
   const reducerActivePlayer = (state, action) => {
     switch (action.type) {
@@ -53,26 +71,6 @@ const Content = ({ tab, nextPlayer, setActiveTab, setNextPlayer, playerOneBoard,
       case PLAYERTWO:
         setNextPlayer(PLAYERONE)
         setActiveTab(PLAYERTWO)
-    }
-  }
-
-  const reducerFireCheck = (button, action) => {
-    switch (action.type) {
-      case HIT:
-        console.log('')
-        return '' //
-      case MISS:
-        return '' //
-    }
-  }
-
-  const gameHitCheck = (location, fleet) => {
-    if (fleet.isFleetHit(location)) {
-      fleet.ships.forEach(ship => ship.shipHitCheck(location))
-      fleet.removeSunkShip()
-      gameOverCheck(fleet)
-    } else {
-      return 'MISS'
     }
   }
 
