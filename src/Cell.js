@@ -12,19 +12,13 @@ const Cell = function (cellId, player, hitCheck, reducer, updateCell) {
   this.cellCol = cellId.slice(0, 1)
   this.hitCheck = hitCheck
   this.className = ('row' + this.cellRow + ' ' + 'boardCell')
-  console.log('CELL PLAYER - ', this.player)
-  console.log('Cellid = ', this.cellId)
   const buttonId = (this.cellId + 'Button')
   // const [, dispatch] = useReducer(reducer, updateCell)
 
   const clickEffect = (e) => {
     // e.currentTarget.setAttribute('disabled', true)
     // dispatch({ type: this.id })
-    console.log(this, ' what is this?')
-    // console.log(e, ' what is e?')
-    // const buttonChild = Document.getElementById(this.cellId
-    // console.log(buttonChild, ' - buttonChild')
-    // buttonChild.remove()
+    document.getElementById(this.cellId + 'Button').remove()
     // endTurn()
   }
   this.cellButton = (new Button(buttonId, 'cellButton', clickEffect, this.text, ('row' + this.cellRow)))
