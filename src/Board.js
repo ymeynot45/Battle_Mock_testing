@@ -25,7 +25,7 @@ const Board = function (boardHeight, boardWidth, player) {
   this.renderBoard = function () {
     return (
       <div className='playerDisplay'> {this.player}
-        <ul id='squareWrapper'>
+        <ul id={(this.player + 'squareWrapper')} className='squareWrapper'>
           {boardStructure}
         </ul>
       </div>
