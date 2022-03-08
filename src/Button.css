@@ -19,13 +19,14 @@
 }
 
 #holdingButton{
-  width: 10%;
+  width: 15%;
   border: 2px, solid, black;
   background-color: lightgrey;
 }
 
 #endTurnButton{
   border: 2px, solid, black;
+  width: 15%;
   /* need to align with the waiting tab above it, currently looks askew */
   color: green;
   margin-bottom: 50px;

@@ -24,7 +24,7 @@ const Cell = function (cellId, player, hitCheck, reducer, updateCell) {
   this.cellButton = (new Button(buttonId, 'cellButton', clickEffect, this.text, ('row' + this.cellRow)))
 
   return (
-    <li key={cellId} id={this.cellId} className={this.className}>{this.cellButton}</li>
+    <li key={this.cellId} id={this.cellId} className={this.className}>{this.cellButton}</li>
   ) //
 }
 

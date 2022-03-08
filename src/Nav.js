@@ -29,8 +29,7 @@ const Nav = ({ activeTab }) => { // nextPlayerImport <-- for the third var
   )
 }
 Nav.propTypes = {
-  activeTab: PropTypes.string.isRequired,
-  onTabChange: PropTypes.func.isRequired
+  activeTab: PropTypes.string
   // nextPlayerImport: PropTypes.string.isRequired
 }
 
